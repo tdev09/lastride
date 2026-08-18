@@ -368,35 +368,53 @@ function MegaTrigger({
   /**
    * The panel opens on hover and on focus, both in CSS. That leaves it stuck
    * open after a click: the clicked link keeps focus, the header does not
-   * unmount across a client side navigation, and `group-focus-within` holds
-   * the panel visible on the page you just landed on.
+   * unmount across a client side navigation, so `group-focus-within` holds the
+   * panel open on the page you just landed on, and hovering a second menu puts
+   * two panels on screen at once.
    *
-   * This closes it. `display: none` beats the hover and focus rules whatever
-   * the pointer is doing, and it drops the focus the link was holding, since
-   * an element that is not rendered cannot stay focused. Leaving the trigger
-   * clears it, so the next hover opens the panel as normal.
+   * Closing it takes two things, and it does not work with only one:
+   *
+   *   - `dismissed` hides the panel with `display: none`, which beats the
+   *     hover and focus rules whatever the pointer is doing.
+   *   - the focus that click left behind is dropped by hand. Hiding the panel
+   *     does eventually drop it, but not in time to be relied on, and focus on
+   *     the trigger button is never inside the panel to begin with. Focus is
+   *     also what rotates the chevron and lights the trigger pill, so those
+   *     stay stuck too until it is let go.
+   *
+   * `dismissed` is cleared on the way in rather than on the way out. Clearing
+   * it on mouse leave meant hiding the panel could clear it, since hiding the
+   * panel is itself what takes the pointer off this group. On mouse enter the
+   * pointer is deliberately back on the trigger, which is the moment reopening
+   * is actually wanted.
+   *
+   * Keyboard activation, which reports `detail` 0, keeps its focus. Taking it
+   * away would strand someone tabbing through the menu.
    */
   const [dismissed, setDismissed] = useState(false);
 
-  const closeOnLinkClick = (e: React.MouseEvent<HTMLElement>) => {
-    if ((e.target as HTMLElement).closest("a")) setDismissed(true);
+  const onClick = (e: React.MouseEvent<HTMLElement>) => {
+    const el = e.target as HTMLElement;
+    if (el.closest("a")) setDismissed(true);
+    else if (el.closest("button")) setDismissed((v) => !v);
+    else return;
+
+    if (e.detail > 0) (document.activeElement as HTMLElement | null)?.blur();
   };
 
   return (
     <div
       className="group relative"
-      onMouseLeave={() => setDismissed(false)}
-      onClick={closeOnLinkClick}
+      onMouseEnter={() => setDismissed(false)}
+      onClick={onClick}
     >
+      {/*
+       * No aria-expanded on this button on purpose: whether the panel is open
+       * is decided by :hover and :focus-within in CSS, which React cannot see,
+       * so any value put here would be a guess and would sometimes be a lie.
+       */}
       <button
         type="button"
-        // Clicking the trigger of an open panel closes it, which is the only
-        // way to dismiss one without moving the pointer away.
-        //
-        // No aria-expanded here on purpose: whether the panel is open is
-        // decided by :hover and :focus-within in CSS, which React cannot see,
-        // so any value put here would be a guess and would sometimes be a lie.
-        onClick={() => setDismissed((v) => !v)}
         className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-[14.5px] font-medium transition-colors ${
           solid
             ? active
