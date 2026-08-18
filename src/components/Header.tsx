@@ -365,10 +365,38 @@ function MegaTrigger({
   active: boolean;
   width?: string;
 }) {
+  /**
+   * The panel opens on hover and on focus, both in CSS. That leaves it stuck
+   * open after a click: the clicked link keeps focus, the header does not
+   * unmount across a client side navigation, and `group-focus-within` holds
+   * the panel visible on the page you just landed on.
+   *
+   * This closes it. `display: none` beats the hover and focus rules whatever
+   * the pointer is doing, and it drops the focus the link was holding, since
+   * an element that is not rendered cannot stay focused. Leaving the trigger
+   * clears it, so the next hover opens the panel as normal.
+   */
+  const [dismissed, setDismissed] = useState(false);
+
+  const closeOnLinkClick = (e: React.MouseEvent<HTMLElement>) => {
+    if ((e.target as HTMLElement).closest("a")) setDismissed(true);
+  };
+
   return (
-    <div className="group relative">
+    <div
+      className="group relative"
+      onMouseLeave={() => setDismissed(false)}
+      onClick={closeOnLinkClick}
+    >
       <button
         type="button"
+        // Clicking the trigger of an open panel closes it, which is the only
+        // way to dismiss one without moving the pointer away.
+        //
+        // No aria-expanded here on purpose: whether the panel is open is
+        // decided by :hover and :focus-within in CSS, which React cannot see,
+        // so any value put here would be a guess and would sometimes be a lie.
+        onClick={() => setDismissed((v) => !v)}
         className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-[14.5px] font-medium transition-colors ${
           solid
             ? active
@@ -393,7 +421,9 @@ function MegaTrigger({
       </button>
 
       <div
-        className={`invisible absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${width} max-w-[calc(100vw-3rem)]`}
+        className={`invisible absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${width} max-w-[calc(100vw-3rem)] ${
+          dismissed ? "hidden" : ""
+        }`}
       >
         <div className="overflow-hidden rounded-xl border border-ink-100 bg-white shadow-deep">
           {children}
