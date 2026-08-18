@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cities, citiesByRegion, regionOrder } from "@/data/cities";
 import { Icon, MarigoldMark } from "@/components/Icon";
-import { CtaBand, PageHero, Section, SectionHeading } from "@/components/UI";
+import { CtaBand, InterstateTransferSection, PageHero, Section, SectionHeading } from "@/components/UI";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, buildMetadata } from "@/lib/seo";
 
@@ -56,12 +57,26 @@ export default function LocationsPage() {
                   href={`/locations/${c.slug}`}
                   className="card card-hover group overflow-hidden"
                 >
-                  <div className="bg-ink-gradient grain relative p-6">
-                    <MarigoldMark className="h-5 w-5 text-marigold-400/70" />
-                    <h3 className="mt-3 font-display text-[22px] font-semibold text-white">
-                      {c.name}
-                    </h3>
-                    <p className="mt-1 text-[13px] text-white/45">{c.state}</p>
+                  <div className="relative flex min-h-[140px] flex-col justify-end overflow-hidden bg-ink-950 p-6">
+                    {c.image ? (
+                      <Image
+                        src={c.image}
+                        alt={c.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-center opacity-35 transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="bg-ink-gradient grain absolute inset-0" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/70 to-ink-950/30" />
+                    <div className="relative z-10">
+                      <MarigoldMark className="h-5 w-5 text-marigold-400" />
+                      <h3 className="mt-3 font-display text-[24px] font-semibold text-white drop-shadow-sm">
+                        {c.name}
+                      </h3>
+                      <p className="mt-0.5 text-[13px] font-medium text-white/70">{c.state}</p>
+                    </div>
                   </div>
                   <div className="p-6">
                     <p className="flex items-start gap-2 text-[14px] leading-relaxed text-ink-600">
@@ -123,17 +138,31 @@ export default function LocationsPage() {
                       <Link
                         key={c.slug}
                         href={`/locations/${c.slug}`}
-                        className="group rounded-lg border border-ink-100 bg-white p-5 transition-all hover:border-marigold-200 hover:shadow-soft"
+                        className="group relative overflow-hidden rounded-lg border border-ink-100 bg-white p-5 transition-all hover:border-marigold-200 hover:shadow-soft"
                       >
-                        <div className="flex items-baseline justify-between gap-3">
-                          <h4 className="font-display text-[17px] font-semibold text-ink-900 transition-colors group-hover:text-marigold-700">
-                            {c.name}
-                          </h4>
-                          <span className="text-[12px] text-ink-400">{c.state}</span>
+                        {c.image ? (
+                          <div className="absolute inset-0 z-0">
+                            <Image
+                              src={c.image}
+                              alt={c.name}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                              className="object-cover object-center opacity-10 transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/90" />
+                          </div>
+                        ) : null}
+                        <div className="relative z-10">
+                          <div className="flex items-baseline justify-between gap-3">
+                            <h4 className="font-display text-[17px] font-semibold text-ink-900 transition-colors group-hover:text-marigold-700">
+                              {c.name}
+                            </h4>
+                            <span className="text-[12px] font-medium text-ink-500">{c.state}</span>
+                          </div>
+                          <p className="mt-2 text-[13.5px] leading-relaxed text-ink-600">
+                            {c.responseTime}
+                          </p>
                         </div>
-                        <p className="mt-2 text-[13.5px] leading-relaxed text-ink-500">
-                          {c.responseTime}
-                        </p>
                       </Link>
                     ))}
                   </div>
@@ -144,35 +173,7 @@ export default function LocationsPage() {
         </div>
       </Section>
 
-      <Section tone="ink" className="!py-16">
-        <div className="container-page grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <SectionHeading
-              eyebrow="Between cities"
-              title="Interstate and long distance transfer"
-              lead="A great deal of our work is moving someone from the city they worked in to the town they came from. That is a road or air job, and the timing depends on paperwork more than distance."
-              light
-            />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              { t: "Under 12 hours", d: "Freezer ambulance, no embalming needed. Delhi to Lucknow, Bengaluru to Chennai, Mumbai to Pune." },
-              { t: "12 to 24 hours", d: "Embalming first, then a freezer ambulance with two drivers. Delhi to Patna, Surat to Bhopal." },
-              { t: "Over 24 hours", d: "Air cargo is usually better. Same day arrival against a day and a half on the road." },
-              { t: "Any flight", d: "Embalming is compulsory. Add a day for the certificates and the cargo booking." },
-            ].map((x) => (
-              <div key={x.t} className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-                <p className="font-display text-[16px] font-semibold text-marigold-300">
-                  {x.t}
-                </p>
-                <p className="mt-2 text-[14px] leading-relaxed text-white/60">
-                  {x.d}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
+      <InterstateTransferSection />
 
       <CtaBand />
     </>

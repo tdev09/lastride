@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { repatriationRoutes } from "@/data/repatriation";
 import { Icon, MarigoldMark } from "@/components/Icon";
 import {
@@ -250,8 +251,19 @@ export default function RepatriationPage() {
         </div>
       </Section>
 
-      <Section tone="ink">
-        <div className="container-page">
+      <Section tone="ink" className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/interstate-transfer-india.png"
+            alt="Repatriation alternative background"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink-950/90 via-ink-950/75 to-ink-950/90" />
+        </div>
+
+        <div className="container-page relative z-10">
           <SectionHeading
             eyebrow="Worth knowing"
             title="The alternative most families are never told about"
@@ -265,17 +277,17 @@ export default function RepatriationPage() {
               { t: "Hand baggage", d: "Ashes travel with a family member in a sealed, scannable urn. No cargo booking." },
               { t: "Rites unchanged", d: "The asthi visarjan on the Ganga is performed exactly as it would be otherwise." },
             ].map((x) => (
-              <div key={x.t} className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
+              <div key={x.t} className="rounded-xl border border-white/15 bg-ink-950/65 p-6 shadow-lg backdrop-blur-md transition-colors hover:border-marigold-400/40">
                 <p className="font-display text-[17px] font-semibold text-marigold-300">
                   {x.t}
                 </p>
-                <p className="mt-2 text-[14px] leading-relaxed text-white/60">
+                <p className="mt-2 text-[14.5px] leading-relaxed text-white/85">
                   {x.d}
                 </p>
               </div>
             ))}
           </div>
-          <p className="mx-auto mt-8 max-w-2xl text-center text-[15px] leading-relaxed text-white/55">
+          <p className="mx-auto mt-8 max-w-2xl text-center text-[15px] leading-relaxed text-white/70">
             We say this to every family who calls about repatriation, including
             the ones who will choose the full transfer anyway. It should be a
             decision made with the facts rather than by default.

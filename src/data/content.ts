@@ -170,6 +170,7 @@ export const galleryItems: {
   category: string;
   tone: "ink" | "marigold" | "sage" | "paper";
   icon: IconKey;
+  image?: string;
 }[] = [
   {
     title: "Freezer box installation",
@@ -177,6 +178,7 @@ export const galleryItems: {
     category: "Freezer Box",
     tone: "ink",
     icon: "snowflake",
+    image: "/images/gallery/freezer-box.png",
   },
   {
     title: "Hearse van, marigold work",
@@ -184,6 +186,7 @@ export const galleryItems: {
     category: "Hearse Van",
     tone: "marigold",
     icon: "van",
+    image: "/images/blog/freezer-box-or-embalming.png",
   },
   {
     title: "Prayer meeting stage",
@@ -191,6 +194,7 @@ export const galleryItems: {
     category: "Prayer Hall",
     tone: "paper",
     icon: "hall",
+    image: "/images/blog/chautha-and-tehravin-explained.png",
   },
   {
     title: "Antim sanskar samagri",
@@ -198,6 +202,7 @@ export const galleryItems: {
     category: "Samagri",
     tone: "marigold",
     icon: "basket",
+    image: "/images/blog/what-a-hindu-cremation-involves.png",
   },
   {
     title: "Freezer ambulance",
@@ -205,6 +210,7 @@ export const galleryItems: {
     category: "Transport",
     tone: "ink",
     icon: "truck",
+    image: "/images/gallery/freezer-box.png",
   },
   {
     title: "Asthi visarjan at Garhmukteshwar",
@@ -212,6 +218,7 @@ export const galleryItems: {
     category: "Asthi Visarjan",
     tone: "sage",
     icon: "water",
+    image: "/images/blog/asthi-visarjan-where-to-go.png",
   },
   {
     title: "Full flower decoration",
@@ -219,6 +226,7 @@ export const galleryItems: {
     category: "Decoration",
     tone: "marigold",
     icon: "flower",
+    image: "/images/blog/chautha-and-tehravin-explained.png",
   },
   {
     title: "Prayer hall seating",
@@ -226,6 +234,7 @@ export const galleryItems: {
     category: "Prayer Hall",
     tone: "paper",
     icon: "hall",
+    image: "/images/blog/chautha-and-tehravin-explained.png",
   },
   {
     title: "Sealed coffin for air cargo",
@@ -233,6 +242,7 @@ export const galleryItems: {
     category: "Repatriation",
     tone: "ink",
     icon: "plane",
+    image: "/images/blog/bringing-a-body-home-from-abroad.png",
   },
   {
     title: "Pandit ji at the ground",
@@ -240,6 +250,7 @@ export const galleryItems: {
     category: "Rituals",
     tone: "sage",
     icon: "om",
+    image: "/images/blog/what-a-hindu-cremation-involves.png",
   },
   {
     title: "Wood pyre setup",
@@ -247,6 +258,7 @@ export const galleryItems: {
     category: "Cremation",
     tone: "marigold",
     icon: "flame",
+    image: "/images/blog/what-a-hindu-cremation-involves.png",
   },
   {
     title: "Photograph framing",
@@ -254,5 +266,6 @@ export const galleryItems: {
     category: "Decoration",
     tone: "paper",
     icon: "candle",
+    image: "/images/blog/documents-needed-after-a-death-in-india.png",
   },
 ];

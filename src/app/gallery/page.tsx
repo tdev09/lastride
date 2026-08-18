@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { galleryItems } from "@/data/content";
 import { Icon, MarigoldMark } from "@/components/Icon";
 import {
@@ -66,24 +67,47 @@ export default function GalleryPage() {
             ))}
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {/*
+           * Columns rather than a grid. The images are deliberately not all
+           * one shape, and in a grid every card in a row is stretched to the
+           * tallest of them, which leaves the shorter captions sitting on a
+           * block of empty white. Here each card ends where its caption ends
+           * and the next one starts there.
+           */}
+          <div className="mt-10 gap-5 sm:columns-2 lg:columns-3">
             {galleryItems.map((item, i) => (
               <figure
                 key={item.title}
-                className="card card-hover group overflow-hidden"
+                className="card card-hover group mb-5 break-inside-avoid overflow-hidden"
               >
                 <div
-                  className={`grain relative flex items-center justify-center overflow-hidden ${
-                    toneStyles[item.tone]
-                  } ${i % 5 === 0 ? "aspect-[4/5]" : "aspect-[4/3]"}`}
+                  className={`relative flex items-center justify-center overflow-hidden bg-ink-950 ${
+                    i % 5 === 0 ? "aspect-[4/5]" : "aspect-[4/3]"
+                  }`}
                 >
-                  <Icon
-                    name={item.icon}
-                    className="h-16 w-16 transition-transform duration-700 group-hover:scale-110"
-                    strokeWidth={1}
-                  />
-                  <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-marigold-400/40 to-transparent" />
-                  <span className="absolute left-4 top-4 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-700 backdrop-blur-sm">
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div
+                      className={`grain flex h-full w-full items-center justify-center ${
+                        toneStyles[item.tone]
+                      }`}
+                    >
+                      <Icon
+                        name={item.icon}
+                        className="h-16 w-16 transition-transform duration-700 group-hover:scale-110"
+                        strokeWidth={1}
+                      />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent opacity-70 transition-opacity group-hover:opacity-40" />
+                  <span className="absolute left-4 top-4 z-10 rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white shadow-sm backdrop-blur-md">
                     {item.category}
                   </span>
                 </div>

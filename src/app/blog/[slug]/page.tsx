@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { blogPosts, getPost, relatedPosts, sortedPosts } from "@/data/blog";
 import { MarigoldMark } from "@/components/Icon";
 import {
@@ -90,6 +91,19 @@ export default async function PostPage({
               <span className="h-1 w-1 rounded-full bg-ink-300" />
               <span>{post.readingTime}</span>
             </div>
+
+            {post.image ? (
+              <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-2xl bg-ink-950 shadow-md">
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt || post.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 800px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            ) : null}
 
             <div className="mt-10">
               <ContentBlocks sections={post.body} />

@@ -7,6 +7,7 @@ export const cities: City[] = [
     name: "Delhi",
     state: "Delhi",
     region: "Delhi NCR",
+    image: "/images/blog/how-to-apply-for-a-death-certificate-in-delhi.png",
     featured: true,
     responseTime: "30 to 45 minutes across most of the city",
     metaTitle: "Funeral & Cremation Services in Delhi | 24x7 Helpline",
@@ -116,6 +117,7 @@ export const cities: City[] = [
     name: "Gurugram",
     state: "Haryana",
     region: "Delhi NCR",
+    image: "/images/hero-bg-india.png",
     featured: true,
     responseTime: "30 to 40 minutes across the sectors and Old Gurugram",
     metaTitle: "Funeral & Cremation Services in Gurugram | 24x7 Support",
@@ -209,6 +211,7 @@ export const cities: City[] = [
     name: "Noida",
     state: "Uttar Pradesh",
     region: "Delhi NCR",
+    image: "/images/blog/documents-needed-after-a-death-in-india.png",
     featured: true,
     responseTime: "30 to 40 minutes across Noida and Greater Noida",
     metaTitle: "Funeral & Cremation Services in Noida | Antim Nivas",
@@ -296,6 +299,7 @@ export const cities: City[] = [
     name: "Faridabad",
     state: "Haryana",
     region: "Delhi NCR",
+    image: "/images/blog/freezer-box-or-embalming.png",
     responseTime: "35 to 50 minutes across Old and New Faridabad",
     metaTitle: "Funeral & Cremation Services in Faridabad | 24x7 Helpline",
     metaDescription:
@@ -375,6 +379,7 @@ export const cities: City[] = [
     name: "Ghaziabad",
     state: "Uttar Pradesh",
     region: "Delhi NCR",
+    image: "/images/blog/asthi-visarjan-where-to-go.png",
     responseTime: "35 to 50 minutes across Ghaziabad and Indirapuram",
     metaTitle: "Funeral & Cremation Services in Ghaziabad | Hindon Ghat",
     metaDescription:
@@ -457,6 +462,7 @@ export const cities: City[] = [
     name: "Mumbai",
     state: "Maharashtra",
     region: "Maharashtra",
+    image: "/images/hero-bg-india.png",
     featured: true,
     responseTime: "45 to 75 minutes depending on the line and the traffic",
     metaTitle: "Funeral & Cremation Services in Mumbai | 24x7 Helpline",
@@ -556,6 +562,7 @@ export const cities: City[] = [
     name: "Pune",
     state: "Maharashtra",
     region: "Maharashtra",
+    image: "/images/blog/chautha-and-tehravin-explained.png",
     responseTime: "45 to 60 minutes across the city and the PCMC belt",
     metaTitle: "Funeral & Cremation Services in Pune | Vaikunth Ghat",
     metaDescription:
@@ -636,6 +643,7 @@ export const cities: City[] = [
     name: "Nagpur",
     state: "Maharashtra",
     region: "Maharashtra",
+    image: "/images/blog/what-a-hindu-cremation-involves.png",
     responseTime: "45 to 60 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Nagpur | Ambazari Ghat",
     metaDescription:
@@ -710,6 +718,7 @@ export const cities: City[] = [
     name: "Chandigarh",
     state: "Chandigarh",
     region: "Punjab & Haryana",
+    image: "/images/blog/documents-needed-after-a-death-in-india.png",
     responseTime: "40 to 60 minutes across the tricity",
     metaTitle: "Funeral & Cremation Services in Chandigarh | Sector 25",
     metaDescription:
@@ -785,6 +794,7 @@ export const cities: City[] = [
     name: "Mohali",
     state: "Punjab",
     region: "Punjab & Haryana",
+    image: "/images/blog/documents-needed-after-a-death-in-india.png",
     responseTime: "40 to 60 minutes across Mohali and Kharar",
     metaTitle: "Funeral & Cremation Services in Mohali | 24x7 Support",
     metaDescription:
@@ -851,6 +861,7 @@ export const cities: City[] = [
     name: "Panchkula",
     state: "Haryana",
     region: "Punjab & Haryana",
+    image: "/images/blog/freezer-box-or-embalming.png",
     responseTime: "40 to 60 minutes across Panchkula and Pinjore",
     metaTitle: "Funeral & Cremation Services in Panchkula | 24x7 Helpline",
     metaDescription:
@@ -916,6 +927,7 @@ export const cities: City[] = [
     name: "Zirakpur",
     state: "Punjab",
     region: "Punjab & Haryana",
+    image: "/images/hero-bg-india.png",
     responseTime: "45 to 60 minutes across Zirakpur and Dera Bassi",
     metaTitle: "Funeral & Cremation Services in Zirakpur | 24x7 Helpline",
     metaDescription:
@@ -982,6 +994,7 @@ export const cities: City[] = [
     name: "Lucknow",
     state: "Uttar Pradesh",
     region: "Uttar Pradesh",
+    image: "/images/blog/chautha-and-tehravin-explained.png",
     responseTime: "45 to 60 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Lucknow | Bhaisakund",
     metaDescription:
@@ -1062,6 +1075,7 @@ export const cities: City[] = [
     name: "Kanpur",
     state: "Uttar Pradesh",
     region: "Uttar Pradesh",
+    image: "/images/blog/asthi-visarjan-where-to-go.png",
     responseTime: "45 to 60 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Kanpur | Bhairon Ghat",
     metaDescription:
@@ -1130,6 +1144,7 @@ export const cities: City[] = [
     name: "Agra",
     state: "Uttar Pradesh",
     region: "Uttar Pradesh",
+    image: "/images/blog/what-a-hindu-cremation-involves.png",
     responseTime: "45 to 60 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Agra | Taj Ganj Dham",
     metaDescription:
@@ -1198,6 +1213,7 @@ export const cities: City[] = [
     name: "Bhopal",
     state: "Madhya Pradesh",
     region: "Madhya Pradesh",
+    image: "/images/hero-bg-india.png",
     responseTime: "45 to 60 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Bhopal | 24x7 Helpline",
     metaDescription:
@@ -1266,6 +1282,7 @@ export const cities: City[] = [
     name: "Indore",
     state: "Madhya Pradesh",
     region: "Madhya Pradesh",
+    image: "/images/blog/freezer-box-or-embalming.png",
     responseTime: "45 to 60 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Indore | Ramabaug Dham",
     metaDescription:
@@ -1340,6 +1357,7 @@ export const cities: City[] = [
     name: "Bengaluru",
     state: "Karnataka",
     region: "South India",
+    image: "/images/blog/documents-needed-after-a-death-in-india.png",
     featured: true,
     responseTime: "50 to 80 minutes depending on the part of the city",
     metaTitle: "Funeral & Cremation Services in Bengaluru | 24x7 Helpline",
@@ -1438,6 +1456,7 @@ export const cities: City[] = [
     name: "Chennai",
     state: "Tamil Nadu",
     region: "South India",
+    image: "/images/hero-bg-india.png",
     responseTime: "50 to 75 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Chennai | Besant Nagar",
     metaDescription:
@@ -1519,6 +1538,7 @@ export const cities: City[] = [
     name: "Coimbatore",
     state: "Tamil Nadu",
     region: "South India",
+    image: "/images/blog/freezer-box-or-embalming.png",
     responseTime: "45 to 70 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Coimbatore | 24x7 Helpline",
     metaDescription:
@@ -1587,6 +1607,7 @@ export const cities: City[] = [
     name: "Hyderabad",
     state: "Telangana",
     region: "South India",
+    image: "/images/blog/chautha-and-tehravin-explained.png",
     responseTime: "50 to 75 minutes across the city and Secunderabad",
     metaTitle: "Funeral & Cremation Services in Hyderabad | Punjagutta",
     metaDescription:
@@ -1673,6 +1694,7 @@ export const cities: City[] = [
     name: "Kolkata",
     state: "West Bengal",
     region: "East India",
+    image: "/images/blog/asthi-visarjan-where-to-go.png",
     responseTime: "45 to 70 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Kolkata | Keoratala",
     metaDescription:
@@ -1764,6 +1786,7 @@ export const cities: City[] = [
     name: "Patna",
     state: "Bihar",
     region: "East India",
+    image: "/images/blog/asthi-visarjan-where-to-go.png",
     responseTime: "50 to 75 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Patna | Bans Ghat",
     metaDescription:
@@ -1850,6 +1873,7 @@ export const cities: City[] = [
     name: "Surat",
     state: "Gujarat",
     region: "Gujarat",
+    image: "/images/blog/freezer-box-or-embalming.png",
     responseTime: "45 to 65 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Surat | Ashwinikumar",
     metaDescription:
@@ -1918,6 +1942,7 @@ export const cities: City[] = [
     name: "Vadodara",
     state: "Gujarat",
     region: "Gujarat",
+    image: "/images/blog/what-a-hindu-cremation-involves.png",
     responseTime: "45 to 65 minutes across the city",
     metaTitle: "Funeral & Cremation Services in Vadodara | Kailashdham",
     metaDescription:

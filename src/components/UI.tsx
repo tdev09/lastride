@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site, telHref, whatsappHref } from "@/config/site";
 import type { ContentSection, FAQ, IconKey } from "@/data/types";
 import { Icon, MarigoldMark } from "./Icon";
+import { GateCanvas } from "./GateCanvas";
 import { HeroCanvas } from "./HeroCanvas";
 
 /* ------------------------------ Hero ------------------------------ */
@@ -32,10 +34,21 @@ export function PageHero({
 }) {
   return (
     <section className="bg-ink-gradient grain relative overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero-bg-india.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/70 to-ink-950" />
+      </div>
       {ambient ? (
         <HeroCanvas density={0.6} waterline={0.94} intensity={0.65} />
       ) : null}
-      <DecorArch />
+      <GateCanvas />
       <div
         className={`container-page relative pt-[112px] lg:pt-[136px] ${
           compact ? "pb-12 lg:pb-14" : "pb-16 lg:pb-20"
@@ -120,28 +133,6 @@ export function PageHero({
         ) : null}
       </div>
     </section>
-  );
-}
-
-function DecorArch() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute -right-24 -top-16 hidden h-[420px] w-[420px] opacity-[0.07] lg:block"
-    >
-      <svg viewBox="0 0 200 200" className="h-full w-full">
-        <g fill="none" stroke="#fff" strokeWidth="1">
-          {[0, 1, 2, 3, 4].map((i) => (
-            <path
-              key={i}
-              d={`M${30 + i * 8} 190V${100 + i * 4} a${70 - i * 8} ${70 - i * 8} 0 0 1 ${140 - i * 16} 0V190`}
-            />
-          ))}
-          <circle cx="100" cy="72" r="26" />
-          <circle cx="100" cy="72" r="14" />
-        </g>
-      </svg>
-    </div>
   );
 }
 
@@ -337,30 +328,43 @@ export function CtaBand({
     <section className="bg-paper py-12 lg:py-16">
       <div className="container-page">
         <div className="bg-ink-gradient grain relative overflow-hidden rounded-xl px-7 py-11 text-center lg:px-14 lg:py-14">
-          <MarigoldMark className="mx-auto h-7 w-7 text-marigold-400" />
-          <h2 className="mx-auto mt-5 max-w-2xl font-display text-[26px] font-semibold leading-tight text-white sm:text-[32px]">
-            {title}
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[15.5px] leading-relaxed text-white/65">
-            {text}
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href={telHref} className="btn btn-primary btn-lg">
-              <Icon name="phone" className="h-4 w-4" strokeWidth={1.8} />
-              {site.contact.phone}
-            </a>
-            <a
-              href={whatsappHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost-light btn-lg"
-            >
-              WhatsApp us
-            </a>
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/cta-bg-india.png"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover object-center opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/75 to-ink-950/90" />
           </div>
-          <p className="mt-6 text-[13.5px] text-white/45">
-            {note ?? `${site.contact.hours}. ${site.contact.responseTime}.`}
-          </p>
+
+          <div className="relative z-10">
+            <MarigoldMark className="mx-auto h-7 w-7 text-marigold-400" />
+            <h2 className="mx-auto mt-5 max-w-2xl font-display text-[26px] font-semibold leading-tight text-white sm:text-[32px]">
+              {title}
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[15.5px] leading-relaxed text-white/75">
+              {text}
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <a href={telHref} className="btn btn-primary btn-lg">
+                <Icon name="phone" className="h-4 w-4" strokeWidth={1.8} />
+                {site.contact.phone}
+              </a>
+              <a
+                href={whatsappHref()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost-light btn-lg"
+              >
+                WhatsApp us
+              </a>
+            </div>
+            <p className="mt-6 text-[13.5px] text-white/50">
+              {note ?? `${site.contact.hours}. ${site.contact.responseTime}.`}
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -379,11 +383,14 @@ export function Checklist({
   columns?: 1 | 2;
 }) {
   return (
-    <div className="card p-7 lg:p-9">
+    <div className="card p-7 sm:p-9">
       {title ? (
-        <h2 className="font-display text-[21px] font-semibold text-ink-900">
-          {title}
-        </h2>
+        <>
+          <h3 className="font-display text-[20px] font-semibold text-ink-900">
+            {title}
+          </h3>
+          <div className="rule-marigold mt-3" />
+        </>
       ) : null}
       <ul
         className={`mt-5 grid gap-x-8 gap-y-3.5 ${
@@ -407,29 +414,42 @@ export function Checklist({
 
 export function SidebarCallCard({ heading }: { heading?: string }) {
   return (
-    <div className="bg-ink-gradient grain relative overflow-hidden rounded-lg p-7 text-white">
-      <MarigoldMark className="h-6 w-6 text-marigold-400" />
-      <p className="mt-4 font-display text-[20px] font-semibold leading-snug">
-        {heading ?? "Need this arranged today?"}
-      </p>
-      <p className="mt-2.5 text-[14px] leading-relaxed text-white/65">
-        A person answers, at every hour. {site.contact.responseTime}.
-      </p>
-      <a href={telHref} className="btn btn-primary mt-5 w-full">
-        <Icon name="phone" className="h-4 w-4" strokeWidth={1.8} />
-        {site.contact.phone}
-      </a>
-      <a
-        href={whatsappHref()}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="btn btn-ghost-light mt-2.5 w-full"
-      >
-        WhatsApp us
-      </a>
-      <p className="mt-4 text-center text-[12.5px] text-white/40">
-        {site.contact.hours}
-      </p>
+    <div className="bg-ink-gradient grain relative overflow-hidden rounded-lg p-7 text-white shadow-sm">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/cta-bg-india.png"
+          alt=""
+          fill
+          sizes="320px"
+          className="object-cover object-center opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/75 to-ink-950/90" />
+      </div>
+
+      <div className="relative z-10">
+        <MarigoldMark className="h-6 w-6 text-marigold-400" />
+        <p className="mt-4 font-display text-[20px] font-semibold leading-snug">
+          {heading ?? "Need this arranged today?"}
+        </p>
+        <p className="mt-2.5 text-[14px] leading-relaxed text-white/75">
+          A person answers, at every hour. {site.contact.responseTime}.
+        </p>
+        <a href={telHref} className="btn btn-primary mt-5 w-full">
+          <Icon name="phone" className="h-4 w-4" strokeWidth={1.8} />
+          {site.contact.phone}
+        </a>
+        <a
+          href={whatsappHref()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-ghost-light mt-2.5 w-full"
+        >
+          WhatsApp us
+        </a>
+        <p className="mt-4 text-center text-[12.5px] text-white/40">
+          {site.contact.hours}
+        </p>
+      </div>
     </div>
   );
 }
@@ -508,5 +528,81 @@ export function StickyCallBar() {
         </a>
       </div>
     </div>
+  );
+}
+
+/* -------------------- Interstate Transfer Section ------------------- */
+
+export function InterstateTransferSection({
+  eyebrow = "Between cities",
+  title = "Interstate and long distance transfer",
+  lead = "A great deal of our work is moving someone from the city they worked in to the town they came from. That is a road or air job, and the timing depends on paperwork more than distance.",
+  items = [
+    {
+      t: "Under 12 hours",
+      d: "Freezer ambulance, no embalming needed. Delhi to Lucknow, Bengaluru to Chennai, Mumbai to Pune.",
+    },
+    {
+      t: "12 to 24 hours",
+      d: "Embalming first, then a freezer ambulance with two drivers. Delhi to Patna, Surat to Bhopal.",
+    },
+    {
+      t: "Over 24 hours",
+      d: "Air cargo is usually better. Same day arrival against a day and a half on the road.",
+    },
+    {
+      t: "Any flight",
+      d: "Embalming is compulsory. Add a day for the certificates and the cargo booking.",
+    },
+  ],
+  image = "/images/interstate-transfer-india.png",
+}: {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  items?: { t: string; d: string }[];
+  image?: string;
+}) {
+  return (
+    <Section tone="ink" className="relative overflow-hidden !py-16 lg:!py-20">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/80 to-ink-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/60" />
+      </div>
+
+      <div className="container-page relative z-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <SectionHeading
+            eyebrow={eyebrow}
+            title={title}
+            lead={lead}
+            light
+          />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {items.map((x) => (
+            <div
+              key={x.t}
+              className="rounded-xl border border-white/15 bg-ink-950/65 p-5.5 shadow-lg backdrop-blur-md transition-colors hover:border-marigold-400/40"
+            >
+              <p className="font-display text-[17px] font-semibold text-marigold-300">
+                {x.t}
+              </p>
+              <p className="mt-2 text-[14.5px] leading-relaxed text-white/85">
+                {x.d}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Section>
   );
 }

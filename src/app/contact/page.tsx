@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { mailHref, site, telHref, whatsappHref } from "@/config/site";
 import { generalFaqs } from "@/data/content";
 import { Icon, MarigoldMark } from "@/components/Icon";
@@ -170,16 +171,29 @@ export default function ContactPage() {
                 </div>
               ))}
 
-              <div className="bg-ink-gradient grain relative overflow-hidden rounded-lg p-7 text-white">
-                <Icon name="clock" className="h-6 w-6 text-marigold-400" strokeWidth={1.6} />
-                <p className="mt-4 font-display text-[19px] font-semibold">
-                  Outside these three cities?
-                </p>
-                <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/65">
-                  We work in 25 cities through partner depots, all coordinated
-                  from this same helpline. You call one number regardless of
-                  where in India you are.
-                </p>
+              <div className="bg-ink-gradient grain relative overflow-hidden rounded-lg p-7 text-white shadow-sm">
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src="/images/cta-bg-india.png"
+                    alt=""
+                    fill
+                    sizes="400px"
+                    className="object-cover object-center opacity-20"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/75 to-ink-950/90" />
+                </div>
+
+                <div className="relative z-10">
+                  <Icon name="clock" className="h-6 w-6 text-marigold-400" strokeWidth={1.6} />
+                  <p className="mt-4 font-display text-[19px] font-semibold">
+                    Outside these three cities?
+                  </p>
+                  <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/75">
+                    We work in 25 cities through partner depots, all coordinated
+                    from this same helpline. You call one number regardless of
+                    where in India you are.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

@@ -80,6 +80,7 @@ export interface City {
   name: string;
   state: string;
   region: string;
+  image?: string;
   metaTitle: string;
   metaDescription: string;
   /** Opening copy specific to this city. */
@@ -144,6 +145,8 @@ export interface BlogPost {
   date: string;
   readingTime: string;
   author: string;
+  image?: string;
+  imageAlt?: string;
   /** Rendered by the simple block renderer in the post page. */
   body: ContentSection[];
   related: string[];

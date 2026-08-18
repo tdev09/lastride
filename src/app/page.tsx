@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import heroBg from "../../public/images/hero-bg-india.png";
 import { site, telHref, whatsappHref } from "@/config/site";
 import { services } from "@/data/services";
 import { cities, citiesByRegion, regionOrder } from "@/data/cities";
@@ -7,6 +9,7 @@ import { repatriationRoutes } from "@/data/repatriation";
 import { sortedPosts } from "@/data/blog";
 import { generalFaqs, howItWorks, promises, testimonials } from "@/data/content";
 import { Icon, MarigoldMark } from "@/components/Icon";
+import { GateCanvas } from "@/components/GateCanvas";
 import { HeroCanvas } from "@/components/HeroCanvas";
 import { CtaBand, FaqList, Section, SectionHeading } from "@/components/UI";
 import { JsonLd } from "@/components/JsonLd";
@@ -43,28 +46,43 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="bg-ink-gradient grain relative overflow-hidden">
-      {/* Diyas floating on water. Sits behind everything, see HeroCanvas. */}
-      <HeroCanvas density={1} waterline={0.92} intensity={0.9} />
+      {/*
+       * The photograph is composed as a horizon rather than a wallpaper: it is
+       * anchored to the bottom of the section, cropped to the ghats and the
+       * near water, and dissolved upward so the headline sits on clean ink.
+       * The scrims that follow are directional, which is what keeps the copy
+       * readable while the right side of the frame stays lit.
+       */}
+      <div aria-hidden="true" className="absolute inset-0 z-0">
+        <div className="absolute inset-x-0 bottom-0 h-[64%] [mask-image:linear-gradient(180deg,transparent_0%,#000_38%,#000_100%)] sm:h-[70%] lg:h-[76%]">
+          <Image
+            src={heroBg}
+            alt=""
+            fill
+            preload
+            sizes="100vw"
+            placeholder="blur"
+            className="ken-burns object-cover object-[68%_26%] opacity-[0.62] lg:opacity-[0.7]"
+          />
+        </div>
 
-      {/* Arch motif */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 top-0 hidden h-full w-[640px] opacity-[0.06] lg:block"
-      >
-        <svg viewBox="0 0 300 300" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
-          <g fill="none" stroke="#fff" strokeWidth="0.9">
-            {Array.from({ length: 7 }).map((_, i) => (
-              <path
-                key={i}
-                d={`M${40 + i * 10} 300V${150 + i * 6} a${110 - i * 10} ${110 - i * 10} 0 0 1 ${220 - i * 20} 0V300`}
-              />
-            ))}
-            <circle cx="150" cy="112" r="40" />
-            <circle cx="150" cy="112" r="24" />
-            <circle cx="150" cy="112" r="9" />
-          </g>
-        </svg>
+        {/* Copy column scrim. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/75 to-transparent lg:via-ink-950/55" />
+        {/* Sky. */}
+        <div className="absolute inset-x-0 top-0 h-[46%] bg-gradient-to-b from-ink-950 via-ink-950/70 to-transparent" />
+        {/* Floor, so the stats row and the strip below never fight the water. */}
+        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-ink-950 via-ink-950/65 to-transparent" />
+        {/* Lamplight off the ghats. */}
+        <div className="absolute inset-0 bg-[radial-gradient(36rem_20rem_at_74%_60%,rgb(224_166_60/0.22),transparent_70%)] mix-blend-screen" />
+        {/* Vignette. */}
+        <div className="absolute inset-0 bg-[radial-gradient(115%_85%_at_50%_40%,transparent_36%,rgb(8_11_17/0.92)_100%)]" />
       </div>
+
+      {/* Diyas floating on water. Sits behind everything, see HeroCanvas. */}
+      <HeroCanvas density={1} waterline={0.9} intensity={1} />
+
+      {/* Gate motif. Traces in, then light travels through it. See GateCanvas. */}
+      <GateCanvas />
 
       <div className="container-page relative grid items-center gap-14 pb-20 pt-[128px] lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pb-28 lg:pt-[168px]">
         <div>
@@ -119,7 +137,7 @@ function Hero() {
 
         {/* Quick help card */}
         <div className="reveal reveal-3 relative">
-          <div className="rounded-xl border border-white/12 bg-white/[0.06] p-7 backdrop-blur-md lg:p-8">
+          <div className="rounded-xl border border-white/12 bg-ink-950/85 p-7 shadow-[0_26px_64px_-22px_rgb(0_0_0/0.8)] backdrop-blur-xl lg:p-8">
             <div className="flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold-500 text-white">
                 <Icon name="clock" className="h-5 w-5" strokeWidth={1.7} />
@@ -128,7 +146,7 @@ function Hero() {
                 <p className="font-display text-[18px] font-semibold text-white">
                   What happens when you call
                 </p>
-                <p className="text-[13px] text-white/50">Usually under two minutes</p>
+                <p className="text-[13px] text-white/60">Usually under two minutes</p>
               </div>
             </div>
 
@@ -153,7 +171,7 @@ function Hero() {
                   </span>
                   <div>
                     <p className="text-[15px] font-semibold text-white">{s.t}</p>
-                    <p className="mt-1 text-[13.5px] leading-relaxed text-white/55">
+                    <p className="mt-1 text-[13.5px] leading-relaxed text-white/70">
                       {s.d}
                     </p>
                   </div>
@@ -163,7 +181,7 @@ function Hero() {
 
             <div className="mt-7 flex items-center gap-3 rounded-lg border border-white/10 bg-ink-950/40 p-4">
               <Icon name="shield" className="h-5 w-5 shrink-0 text-marigold-400" strokeWidth={1.6} />
-              <p className="text-[13px] leading-relaxed text-white/60">
+              <p className="text-[13px] leading-relaxed text-white/70">
                 If a freezer box will do, we will not sell you embalming. Ask us
                 what you do not need.
               </p>
@@ -579,12 +597,23 @@ function BlogSection() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {posts.map((p) => (
-            <Link key={p.slug} href={`/blog/${p.slug}`} className="group">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-ink-gradient grain">
-                <div className="absolute inset-0 flex items-center justify-center opacity-25 transition-transform duration-700 group-hover:scale-110">
-                  <MarigoldMark className="h-20 w-20 text-marigold-300" />
-                </div>
-                <span className="absolute left-4 top-4 rounded-full bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-marigold-200 backdrop-blur-sm">
+            <Link key={p.slug} href={`/blog/${p.slug}`} className="group flex flex-col">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-ink-950 shadow-sm">
+                {p.image ? (
+                  <Image
+                    src={p.image}
+                    alt={p.imageAlt || p.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="bg-ink-gradient grain relative flex h-full w-full items-center justify-center">
+                    <MarigoldMark className="h-20 w-20 text-marigold-300/25 transition-transform duration-700 group-hover:scale-110" />
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent opacity-80 transition-opacity group-hover:opacity-50" />
+                <span className="absolute left-4 top-4 z-10 rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white shadow-sm backdrop-blur-md">
                   {p.category}
                 </span>
               </div>

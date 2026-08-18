@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/config/site";
 import { cities } from "@/data/cities";
 import { services } from "@/data/services";
@@ -125,17 +126,30 @@ export default function AboutPage() {
           </div>
 
           <aside className="space-y-5">
-            <div className="bg-ink-gradient grain relative overflow-hidden rounded-xl p-8 text-white">
-              <MarigoldMark className="h-7 w-7 text-marigold-400" />
-              <p className="mt-5 font-display text-[21px] font-semibold leading-snug">
-                &ldquo;Death has no schedule, and neither do we.&rdquo;
-              </p>
-              <p className="mt-4 text-[14.5px] leading-relaxed text-white/60">
-                Most of our calls come between 10 pm and 6 am. A person answers
-                every one of them, including on Diwali and Holi. If that sounds
-                like a small thing, ask anyone who has tried to reach a funeral
-                service at three in the morning.
-              </p>
+            <div className="bg-ink-gradient grain relative overflow-hidden rounded-xl p-8 text-white shadow-sm">
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/cta-bg-india.png"
+                  alt=""
+                  fill
+                  sizes="400px"
+                  className="object-cover object-center opacity-20"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/75 to-ink-950/90" />
+              </div>
+
+              <div className="relative z-10">
+                <MarigoldMark className="h-7 w-7 text-marigold-400" />
+                <p className="mt-5 font-display text-[21px] font-semibold leading-snug">
+                  &ldquo;Death has no schedule, and neither do we.&rdquo;
+                </p>
+                <p className="mt-4 text-[14.5px] leading-relaxed text-white/75">
+                  Most of our calls come between 10 pm and 6 am. A person answers
+                  every one of them, including on Diwali and Holi. If that sounds
+                  like a small thing, ask anyone who has tried to reach a funeral
+                  service at three in the morning.
+                </p>
+              </div>
             </div>
 
             <div className="card p-7">

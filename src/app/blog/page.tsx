@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { sortedPosts, blogCategories } from "@/data/blog";
 import { MarigoldMark } from "@/components/Icon";
 import { CtaBand, PageHero, Section, SectionHeading } from "@/components/UI";
@@ -55,13 +56,27 @@ export default function BlogPage() {
             href={`/blog/${lead.slug}`}
             className="card card-hover group grid overflow-hidden lg:grid-cols-2"
           >
-            <div className="bg-ink-gradient grain relative flex min-h-[240px] items-center justify-center p-10">
-              <MarigoldMark className="h-24 w-24 text-marigold-300/30 transition-transform duration-700 group-hover:scale-110" />
-              <span className="absolute left-6 top-6 rounded-full bg-white/12 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-marigold-200 backdrop-blur-sm">
+            <div className="relative flex min-h-[260px] items-center justify-center overflow-hidden bg-ink-950 sm:min-h-[320px]">
+              {lead.image ? (
+                <Image
+                  src={lead.image}
+                  alt={lead.imageAlt || lead.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority
+                />
+              ) : (
+                <div className="bg-ink-gradient grain relative flex h-full w-full items-center justify-center p-10">
+                  <MarigoldMark className="h-24 w-24 text-marigold-300/30 transition-transform duration-700 group-hover:scale-110" />
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/20 to-transparent" />
+              <span className="absolute left-6 top-6 z-10 rounded-full bg-white/20 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-white shadow-sm backdrop-blur-md">
                 {lead.category}
               </span>
             </div>
-            <div className="p-8 lg:p-10">
+            <div className="flex flex-col justify-center p-8 lg:p-10">
               <p className="flex items-center gap-2 text-[12.5px] text-ink-500">
                 <time dateTime={lead.date}>{formatDate(lead.date)}</time>
                 <span className="h-1 w-1 rounded-full bg-ink-300" />
@@ -85,10 +100,23 @@ export default function BlogPage() {
           {/* Rest */}
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {rest.map((p) => (
-              <Link key={p.slug} href={`/blog/${p.slug}`} className="group">
-                <div className="bg-ink-gradient grain relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-lg">
-                  <MarigoldMark className="h-16 w-16 text-marigold-300/25 transition-transform duration-700 group-hover:scale-110" />
-                  <span className="absolute left-4 top-4 rounded-full bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-marigold-200 backdrop-blur-sm">
+              <Link key={p.slug} href={`/blog/${p.slug}`} className="group flex flex-col">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-ink-950 shadow-sm">
+                  {p.image ? (
+                    <Image
+                      src={p.image}
+                      alt={p.imageAlt || p.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="bg-ink-gradient grain relative flex h-full w-full items-center justify-center">
+                      <MarigoldMark className="h-16 w-16 text-marigold-300/25 transition-transform duration-700 group-hover:scale-110" />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent opacity-80 transition-opacity group-hover:opacity-50" />
+                  <span className="absolute left-4 top-4 z-10 rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-white shadow-sm backdrop-blur-md">
                     {p.category}
                   </span>
                 </div>
@@ -100,7 +128,7 @@ export default function BlogPage() {
                 <h2 className="mt-2 font-display text-[19px] font-semibold leading-snug text-ink-900 transition-colors group-hover:text-marigold-700">
                   {p.title}
                 </h2>
-                <p className="mt-2 text-[14.5px] leading-relaxed text-ink-600">
+                <p className="mt-2 text-[14.5px] leading-relaxed text-ink-600 line-clamp-3">
                   {p.excerpt}
                 </p>
               </Link>

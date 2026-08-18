@@ -451,6 +451,27 @@
   animation: pulse-ring 2.4s cubic-bezier(0.66, 0, 0, 1) infinite;
 }
 
+/* ------------------------------------------------------------
+   Hero decoration
+   ------------------------------------------------------------ */
+
+/* Very slow drift across the photograph so the hero is never quite still.
+   Both ends of the range are usable, which matters because the
+   reduced-motion rule below snaps every animation to its end state. */
+@keyframes ken-burns {
+  from {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.13) translate3d(-1.6%, -1.2%, 0);
+  }
+}
+
+.ken-burns {
+  animation: ken-burns 46s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

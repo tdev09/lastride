@@ -8,6 +8,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-06-18",
     readingTime: "8 min read",
     author: "Last Ride Team",
+    image: "/images/blog/documents-needed-after-a-death-in-india.png",
+    imageAlt: "Official Indian documents and paperwork checklist",
     excerpt:
       "The full list, in the order you will actually need them, from the hospital summary to the succession certificate. Written for families who have never done this before.",
     metaTitle: "Documents Needed After a Death in India | Checklist",
@@ -110,6 +112,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-05-27",
     readingTime: "6 min read",
     author: "Last Ride Team",
+    image: "/images/blog/how-to-apply-for-a-death-certificate-in-delhi.png",
+    imageAlt: "Delhi NCR municipal portal for death certificate application",
     excerpt:
       "Which authority issues it, what the portal asks for, how long it takes, and the mistakes that send applications back.",
     metaTitle: "Death Certificate in Delhi | How to Apply, Step by Step",
@@ -200,6 +204,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-05-09",
     readingTime: "5 min read",
     author: "Last Ride Team",
+    image: "/images/blog/freezer-box-or-embalming.png",
+    imageAlt: "Dignified Indian funeral floral arrangement and diya",
     excerpt:
       "One preserves for days and costs little. The other preserves for weeks and is compulsory for any flight. Here is how to tell which situation you are in.",
     metaTitle: "Freezer Box or Embalming | Which One You Need",
@@ -280,6 +286,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-22",
     readingTime: "9 min read",
     author: "Last Ride Team",
+    image: "/images/blog/what-a-hindu-cremation-involves.png",
+    imageAlt: "Traditional Hindu cremation rituals and marigold flowers",
     excerpt:
       "For anyone arranging this for the first time. What happens at the house, what happens at the ground, who does what, and what the family is expected to bring.",
     metaTitle: "Hindu Cremation Rituals | Step by Step, What to Expect",
@@ -384,6 +392,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-03",
     readingTime: "7 min read",
     author: "Last Ride Team",
+    image: "/images/blog/cost-of-a-funeral-in-delhi-ncr.png",
+    imageAlt: "Breakdown of funeral expenses in Delhi NCR",
     excerpt:
       "An honest breakdown of where the money goes, which items are unavoidable, which are optional, and where families most often overspend.",
     metaTitle: "Funeral Cost in Delhi NCR | Honest Breakdown of Charges",
@@ -464,6 +474,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-03-15",
     readingTime: "8 min read",
     author: "Last Ride Team",
+    image: "/images/blog/bringing-a-body-home-from-abroad.png",
+    imageAlt: "International body repatriation documents and flight logistics",
     excerpt:
       "The timeline, the documents, who pays, and the question most families do not think to ask until it is too late.",
     metaTitle: "Repatriation to India | What Families Should Know",
@@ -565,6 +577,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-02-20",
     readingTime: "6 min read",
     author: "Last Ride Team",
+    image: "/images/blog/chautha-and-tehravin-explained.png",
+    imageAlt: "Traditional Indian Chautha and Tehravin prayer assembly",
     excerpt:
       "What happens on which day, how many people to expect, what to arrange and when, and how the sequence differs across communities.",
     metaTitle: "Chautha & Tehravin | What Happens and How to Plan",
@@ -656,6 +670,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-01-28",
     readingTime: "6 min read",
     author: "Last Ride Team",
+    image: "/images/blog/asthi-visarjan-where-to-go.png",
+    imageAlt: "Asthi Visarjan ritual on the Ganges river ghats",
     excerpt:
       "Garhmukteshwar, Haridwar, Prayagraj, Varanasi or Gaya. How to choose, what the trip involves, and what to do when nobody in the family can travel.",
     metaTitle: "Asthi Visarjan | Where to Go and What to Carry",
