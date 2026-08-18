@@ -31,10 +31,10 @@ export const site = {
     /** Digits only, used for tel: and wa.me links. */
     phoneRaw: "918810336482",
     /** Optional second line. Set to null to hide it everywhere. */
-    altPhone: "+91 98110 45678",
-    altPhoneRaw: "919811045678",
+    altPhone: null,
+    altPhoneRaw: null,
     whatsapp: "918810336482",
-    email: "info@lastridefuneral.in",
+    email: "test@lastride.com",
     supportEmail: "support@lastridefuneral.in",
     hours: "Open 24 hours, all 7 days",
     responseTime: "Team dispatched within 30 to 45 minutes across Delhi NCR",

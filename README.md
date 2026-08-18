@@ -40,11 +40,11 @@ export const site = {
   url: "https://www.lastridefuneral.in",   // set this before going live
 
   contact: {
-    phone: "+91 88103 36482",
-    phoneRaw: "918810336482",              // digits only, used for tel: and wa.me
-    altPhone: "+91 98110 45678",           // set to null to hide the second line
-    whatsapp: "918810336482",
-    email: "info@lastridefuneral.in",
+    phone: "+91 XXXXX XXXXX",              // helpline, shown on every page
+    phoneRaw: "91XXXXXXXXXX",              // digits only, used for tel: and wa.me
+    altPhone: null,                        // optional second line, null hides it
+    whatsapp: "91XXXXXXXXXX",
+    email: "you@example.com",
   },
 
   offices: [ /* add, remove or reorder */ ],
