@@ -7,6 +7,8 @@ import { repatriationRoutes } from "@/data/repatriation";
 import { blogPosts } from "@/data/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (!site.seoEnabled) return [];
+
   const now = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = [

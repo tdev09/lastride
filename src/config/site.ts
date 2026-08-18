@@ -15,6 +15,25 @@ export const site = {
   /** Used for canonical URLs, sitemap and Open Graph tags. Update before going live. */
   url: "https://www.lastridefuneral.in",
 
+  /**
+   * Search engine and AI crawler visibility. The one switch for all of it.
+   *
+   * While this is false the site asks to be left alone everywhere it can:
+   * robots.txt disallows the whole site, every page carries a noindex, the
+   * sitemap comes back empty, /llms.txt returns a 404 and no structured data
+   * is emitted. Nothing a visitor sees changes.
+   *
+   * Turn it on when the content and the structured data are ready to be read.
+   * Note that the robots.txt disallow stops crawlers before they can read the
+   * noindex, which is the right order for a site that has never been indexed.
+   * If this site is ever indexed and then needs pulling back out, allow the
+   * crawl and let the noindex do the work instead.
+   *
+   * Typed as a plain boolean rather than the literal `false` the surrounding
+   * `as const` would give it, so both branches of every check stay live.
+   */
+  seoEnabled: false as boolean,
+
   founded: 2010,
   yearsOfService: new Date().getFullYear() - 2010,
   familiesServed: "5,000+",

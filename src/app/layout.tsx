@@ -7,7 +7,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCallBar } from "@/components/UI";
 import { JsonLd } from "@/components/JsonLd";
-import { organizationSchema, websiteSchema } from "@/lib/seo";
+import { organizationSchema, robotsMeta, websiteSchema } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,17 +47,7 @@ export const metadata: Metadata = {
     "24x7 funeral helpline",
   ],
   alternates: { canonical: "/" },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: robotsMeta,
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -85,7 +75,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en-IN" className={`${inter.variable} ${fraunces.variable}`} data-scroll-behavior="smooth">
       <body className="min-h-screen antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <Header />

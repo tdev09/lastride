@@ -114,9 +114,10 @@ function pointAt(a: Arch, s: number) {
 export function GateCanvas({
   className = "",
   intensity = 1,
-  arches: archCount = DEFAULT_ARCHES,
+  arches: archCountProp = DEFAULT_ARCHES,
 }: GateCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const archCount = typeof archCountProp === "number" ? archCountProp : DEFAULT_ARCHES;
 
   useEffect(() => {
     const canvas = canvasRef.current;
