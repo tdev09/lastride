@@ -24,6 +24,7 @@ export default function HomePage() {
       <ServicesSection />
       <ProcessSection />
       <PromisesSection />
+      <AtWorkSection />
       <CitiesSection />
       <RepatriationSection />
       <GroundsSection />
@@ -216,6 +217,15 @@ function ServicesSection() {
   const featured = services.filter((s) => s.featured);
   const rest = services.filter((s) => !s.featured);
 
+  /*
+   * The strip below the cards is drawn as white tiles sitting on an ink-100
+   * background, so the hairlines between them are just the background showing
+   * through the gaps. That only works while every row is full. An odd count
+   * leaves the tail of the last row as a slab of grey, so these top it up with
+   * blank white tiles, per breakpoint, whatever the service count happens to be.
+   */
+  const shortBy = (columns: number) => (columns - (rest.length % columns)) % columns;
+
   return (
     <Section tone="paper" id="services">
       <div className="container-page">
@@ -278,6 +288,21 @@ function ServicesSection() {
               </span>
             </Link>
           ))}
+
+          {shortBy(2) ? (
+            <span
+              aria-hidden="true"
+              className="hidden bg-white sm:block lg:hidden"
+              style={{ gridColumn: `span ${shortBy(2)}` }}
+            />
+          ) : null}
+          {shortBy(4) ? (
+            <span
+              aria-hidden="true"
+              className="hidden bg-white lg:block"
+              style={{ gridColumn: `span ${shortBy(4)}` }}
+            />
+          ) : null}
         </div>
       </div>
     </Section>
@@ -289,7 +314,23 @@ function ServicesSection() {
 function ProcessSection() {
   return (
     <Section tone="ink">
-      <div className="container-page relative">
+      {/*
+       * A photograph sits behind the four steps, but well under an ink wash.
+       * It is there to warm the panel rather than to be looked at, so the
+       * copy keeps its full contrast against the dark.
+       */}
+      <div aria-hidden="true" className="absolute inset-0 z-0">
+        <Image
+          src="/images/blog/what-a-hindu-cremation-involves.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-[0.3]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/70 to-ink-950" />
+      </div>
+
+      <div className="container-page relative z-10">
         <SectionHeading
           eyebrow="How it works"
           title="Four steps, and you only take part in the first"
@@ -347,6 +388,34 @@ function PromisesSection() {
               Talk to us
             </Link>
           </div>
+
+          {/*
+           * The copy column runs shorter than the four cards beside it. A
+           * photograph closes that gap and gives the claims something to sit
+           * against, with the caption burned into the frame rather than
+           * printed underneath it.
+           */}
+          <figure className="relative mt-10 overflow-hidden rounded-xl border border-ink-100 shadow-sm">
+            <div className="relative aspect-[4/3]">
+              <Image
+                src="/images/blog/freezer-box-or-embalming.png"
+                alt="A garlanded photograph on a table of marigold and tuberose, with brass diyas lit in front of it and the family seated behind"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/15 to-transparent" />
+            </div>
+            <figcaption className="absolute inset-x-0 bottom-0 p-6">
+              <p className="font-display text-[16px] font-semibold text-white">
+                A prayer meeting in Gurugram
+              </p>
+              <p className="mt-1 text-[13.5px] leading-relaxed text-white/70">
+                Photograph printed and framed the same morning, flower work kept
+                to white and marigold, the hall ready before anyone arrived.
+              </p>
+            </figcaption>
+          </figure>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
@@ -362,6 +431,85 @@ function PromisesSection() {
                 {p.text}
               </p>
             </div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+/* ------------------------------ At work ----------------------------- */
+
+/**
+ * Four photographs rather than four more icon cards. Families are deciding
+ * whether to trust a stranger with a funeral, and the fastest way to answer
+ * that is to show them what turns up at the house.
+ */
+const workScenes = [
+  {
+    image: "/images/gallery/freezer-box.png",
+    alt: "A glass topped freezer box garlanded with marigold, set up in a family living room with relatives seated beside it",
+    title: "Freezer box at home",
+    text: "Delivered, levelled and cold within the hour, so relatives who are still travelling can see them.",
+  },
+  {
+    image: "/images/blog/what-a-hindu-cremation-involves.png",
+    alt: "A brass puja thali with a bell, a copper kalash, incense and marigold garlands laid out on the steps of a ghat",
+    title: "Samagri at the ground",
+    text: "The whole kit carried to the platform, with a pandit ji who knows your community rites.",
+  },
+  {
+    image: "/images/blog/chautha-and-tehravin-explained.png",
+    alt: "A prayer meeting in a hall with white floor seating, a garlanded portrait on an easel and a pandit reading",
+    title: "Prayer meeting, set up early",
+    text: "Hall, seating, sound and flower work, ready ninety minutes before the first guest arrives.",
+  },
+  {
+    image: "/images/blog/asthi-visarjan-where-to-go.png",
+    alt: "A copper kalash and marigold flowers on the stone steps of a river ghat at sunrise, with boats on the water",
+    title: "Asthi visarjan",
+    text: "Haridwar, Garhmukteshwar or Prayagraj, with the family or carried there on their behalf.",
+  },
+];
+
+function AtWorkSection() {
+  return (
+    <Section tone="ink">
+      <div className="container-page relative z-10">
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <SectionHeading
+            eyebrow="A look at the work"
+            title="What we set up, and how it looks"
+            lead="Restrained rather than elaborate, because at a funeral that is what looks right. These four are what families ask us for most."
+            light
+          />
+          <Link href="/gallery" className="btn btn-ghost-light shrink-0">
+            See the gallery
+          </Link>
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {workScenes.map((scene) => (
+            <figure key={scene.title} className="group">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-ink-900 ring-1 ring-white/10 transition-shadow duration-500 group-hover:ring-marigold-400/40">
+                <Image
+                  src={scene.image}
+                  alt={scene.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/35 to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="font-display text-[17px] font-semibold text-white">
+                    {scene.title}
+                  </p>
+                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/70">
+                    {scene.text}
+                  </p>
+                </figcaption>
+              </div>
+            </figure>
           ))}
         </div>
       </div>
@@ -428,7 +576,19 @@ function RepatriationSection() {
       <div className="container-page">
         <div className="overflow-hidden rounded-xl border border-ink-100">
           <div className="grid lg:grid-cols-[1fr_1fr]">
-            <div className="bg-ink-gradient grain relative p-8 lg:p-12">
+            <div className="bg-ink-gradient grain relative overflow-hidden p-8 lg:p-12">
+              <div aria-hidden="true" className="absolute inset-0 z-0">
+                <Image
+                  src="/images/interstate-transfer-india.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center opacity-[0.55]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-ink-950 via-ink-950/85 to-ink-950/45" />
+              </div>
+
+              <div className="relative z-10">
               <p className="eyebrow eyebrow-light">
                 <Icon name="plane" className="h-4 w-4" strokeWidth={1.8} />
                 International repatriation
@@ -453,6 +613,7 @@ function RepatriationSection() {
                 <a href={telHref} className="btn btn-ghost-light">
                   Speak to a coordinator
                 </a>
+              </div>
               </div>
             </div>
 
